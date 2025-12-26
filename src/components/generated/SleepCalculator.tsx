@@ -54,44 +54,46 @@ const getRelativeDay = (
   
   if (isBedtime) {
     // For bedtime: target is always before reference (wake time)
-    // We need to determine if the bedtime is today or tomorrow based on current time
+    // We need to determine if the bedtime is "tonight" or "tomorrow" based on current time
     
     // Calculate the difference in minutes (can be negative if target is in the past)
     let minutesDiff = targetTotalMinutes - currentTotalMinutes;
     
     // Handle wrap-around at midnight
     // If target is early morning (0-6 AM) and current is late night (10 PM - 11:59 PM),
-    // the target is still "today" (tonight, going into early morning)
+    // the target is still "tonight" (going into early morning of the same day)
     // If target is early morning and current is also early morning but later,
-    // check if it's the same day
+    // it means we're calculating bedtime for tomorrow night
     
     // If target is in the past (negative diff)
     if (minutesDiff < 0) {
-      // If target is more than 12 hours in the past, it's likely for tomorrow
-      // (e.g., current is 11 PM, target was 1 PM = 10 hours ago, still today)
+      // If target is more than 12 hours in the past, it's for tomorrow night
       // (e.g., current is 2 AM, target was 1 PM yesterday = 13 hours ago, tomorrow)
       if (Math.abs(minutesDiff) > 12 * 60) {
         return t.tomorrow;
       }
-      // Otherwise, it's still "today" (the bedtime that just passed or is very recent)
-      return t.today;
+      // If target is early morning (0-6) and current is also early morning but later,
+      // it's for tonight (same day, going backwards)
+      if (targetHours <= 6 && currentHours <= 6 && targetHours < currentHours) {
+        return t.tonight;
+      }
+      // Otherwise, it's still "tonight" (the bedtime that just passed or is very recent)
+      return t.tonight;
     }
     
     // Target is in the future
-    // If target is more than 12 hours away, it might be tomorrow
-    // But typically bedtimes are within 12 hours, so check more carefully
+    // If target is early morning (0-6 AM) and current is late night (22-23), it's "tonight"
+    if (currentHours >= 22 && targetHours <= 6) {
+      return t.tonight;
+    }
+    
+    // If target is more than 12 hours away and crosses midnight, it's tomorrow
     if (minutesDiff > 12 * 60) {
-      // Check if we're crossing a day boundary
-      // If current is late night (22-23) and target is early morning (0-6), it's still "today"
-      if (currentHours >= 22 && targetHours <= 6) {
-        return t.today;
-      }
-      // Otherwise, it's likely tomorrow
       return t.tomorrow;
     }
     
-    // Target is within 12 hours, it's "today"
-    return t.today;
+    // Target is within 12 hours, it's "tonight"
+    return t.tonight;
   } else {
     // For wake time: target is always after reference (bedtime)
     // If target hour < reference hour, we crossed midnight (e.g., sleep 11pm (23) -> wake 7am (7) = tomorrow)
@@ -102,7 +104,8 @@ const getRelativeDay = (
       return t.tomorrow;
     }
     
-    return t.tonight;
+    // Wake time is in the future today, so it's "Today" (not "Tonight")
+    return t.today;
   }
 };
 interface SleepTime {
