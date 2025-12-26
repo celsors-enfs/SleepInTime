@@ -12,7 +12,7 @@ export const Home: React.FC = () => {
   const content = homepageContent[language] || homepageContent['en'];
 
   return (
-    <div className="home-page relative min-h-screen w-full bg-[#030617] text-white font-sans">
+    <div className="home-page relative w-full bg-[#030617] text-white font-sans">
       <style>{`
         /* Hide SleepCalculator's navigation when used in Home page */
         .home-page nav {

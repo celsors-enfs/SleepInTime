@@ -310,7 +310,7 @@ export default function SleepCalculator() {
     const mins = minutes % 60;
     return `${hours}h${mins > 0 ? ` ${mins}m` : ''}`;
   };
-  return <div className="relative min-h-screen w-full bg-[#030617] text-white font-sans selection:bg-blue-500/30 overflow-x-hidden">
+  return <div className="relative w-full bg-[#030617] text-white font-sans selection:bg-blue-500/30 overflow-x-hidden">
       {/* Background Layer: Stars and Planets */}
       <div className="fixed inset-0 z-0">
         <StarField />
