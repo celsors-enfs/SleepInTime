@@ -64,7 +64,7 @@ export const About: React.FC = () => {
   const pageContent = content[language];
 
   return (
-    <div className="relative min-h-screen w-full bg-[#030617] text-white font-sans">
+    <div className="relative w-full bg-[#030617] text-white font-sans">
       <main className="relative z-10 pt-20 pb-20 px-6 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-8" style={{ fontWeight: '200' }}>
           {pageContent.title}

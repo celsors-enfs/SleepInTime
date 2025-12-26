@@ -53,3 +53,31 @@ export default tseslint.config({
 });
 ```
 # SleepInTime
+
+## Requirements
+
+- **Node.js**: Version 20.x (LTS) - see `.nvmrc`
+- **Package Manager**: npm (use `package-lock.json` only)
+
+## Setup
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## Important Notes
+
+- This project uses **npm only** - do not use yarn or pnpm
+- Node.js 20.x is required (Node 24+ may cause `ERR_INVALID_PACKAGE_CONFIG`)
+- If you encounter package errors, clean and reinstall:
+  ```bash
+  rm -rf node_modules package-lock.json
+  npm install
+  ```

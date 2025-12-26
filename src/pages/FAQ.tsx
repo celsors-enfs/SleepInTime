@@ -16,7 +16,7 @@ const faqContent: Record<Language, {
   items: FAQItem[];
 }> = {
   en: {
-    title: 'Frequently Asked Questions',
+    title: 'Sleep Calculator FAQ',
     description: 'Common questions about sleep cycles and SleepInTime',
     items: [
       {
@@ -66,7 +66,7 @@ const faqContent: Record<Language, {
     ],
   },
   'pt-br': {
-    title: 'Perguntas Frequentes',
+    title: 'Perguntas Frequentes da Calculadora de Sono',
     description: 'Perguntas comuns sobre ciclos de sono e SleepInTime',
     items: [
       {
@@ -116,7 +116,7 @@ const faqContent: Record<Language, {
     ],
   },
   es: {
-    title: 'Preguntas Frecuentes',
+    title: 'Preguntas Frecuentes de la Calculadora de Sueño',
     description: 'Preguntas comunes sobre ciclos de sueño y SleepInTime',
     items: [
       {
@@ -166,7 +166,7 @@ const faqContent: Record<Language, {
     ],
   },
   fr: {
-    title: 'Questions Fréquemment Posées',
+    title: 'Questions Fréquemment Posées sur la Calculatrice de Sommeil',
     description: 'Questions courantes sur les cycles du sommeil et SleepInTime',
     items: [
       {
@@ -216,7 +216,7 @@ const faqContent: Record<Language, {
     ],
   },
   zh: {
-    title: '常见问题',
+    title: '睡眠计算器常见问题',
     description: '关于睡眠周期和SleepInTime的常见问题',
     items: [
       {
@@ -287,7 +287,7 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#030617] text-white font-sans">
+    <div className="relative w-full bg-[#030617] text-white font-sans">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

@@ -8,7 +8,7 @@ const content: Record<Language, {
   sections: Array<{ heading: string; paragraphs: string[] }>;
 }> = {
   en: {
-    title: 'Sleep Hygiene',
+    title: 'Sleep Hygiene Tips for a Better Sleep Schedule',
     sections: [
       {
         heading: 'Light exposure and your sleep cycle',
@@ -55,7 +55,7 @@ const content: Record<Language, {
     ],
   },
   'pt-br': {
-    title: 'Higiene do Sono',
+    title: 'Dicas de Higiene do Sono para um Melhor Horário de Sono',
     sections: [
       {
         heading: 'Exposição à luz e seu ciclo de sono',
@@ -102,7 +102,7 @@ const content: Record<Language, {
     ],
   },
   es: {
-    title: 'Higiene del Sueño',
+    title: 'Consejos de Higiene del Sueño para un Mejor Horario de Sueño',
     sections: [
       {
         heading: 'Exposición a la luz y tu ciclo de sueño',
@@ -149,7 +149,7 @@ const content: Record<Language, {
     ],
   },
   fr: {
-    title: 'Hygiène du Sommeil',
+    title: 'Conseils d\'Hygiène du Sommeil pour un Meilleur Horaire de Sommeil',
     sections: [
       {
         heading: 'Exposition à la lumière et votre cycle de sommeil',
@@ -196,7 +196,7 @@ const content: Record<Language, {
     ],
   },
   zh: {
-    title: '睡眠卫生',
+    title: '睡眠卫生提示：改善睡眠时间表',
     sections: [
       {
         heading: '光照与您的睡眠周期',
@@ -249,7 +249,7 @@ export const SleepHygiene: React.FC = () => {
   const pageContent = content[language];
 
   return (
-    <div className="relative min-h-screen w-full bg-[#030617] text-white font-sans">
+    <div className="relative w-full bg-[#030617] text-white font-sans">
       <main className="relative z-10 pt-20 pb-20 px-6 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-8" style={{ fontWeight: '200' }}>
           {pageContent.title}

@@ -8,7 +8,7 @@ const content: Record<Language, {
   sections: Array<{ heading: string; paragraphs: string[] }>;
 }> = {
   en: {
-    title: 'How it works',
+    title: 'How This Sleep Calculator Works',
     sections: [
       {
         heading: 'Understanding sleep cycles',
@@ -44,7 +44,7 @@ const content: Record<Language, {
     ],
   },
   'pt-br': {
-    title: 'Como funciona',
+    title: 'Como Esta Calculadora de Sono Funciona',
     sections: [
       {
         heading: 'Entendendo os ciclos do sono',
@@ -80,7 +80,7 @@ const content: Record<Language, {
     ],
   },
   es: {
-    title: 'Cómo funciona',
+    title: 'Cómo Funciona Esta Calculadora de Sueño',
     sections: [
       {
         heading: 'Entendiendo los ciclos del sueño',
@@ -116,7 +116,7 @@ const content: Record<Language, {
     ],
   },
   fr: {
-    title: 'Comment ça marche',
+    title: 'Comment Cette Calculatrice de Sommeil Fonctionne',
     sections: [
       {
         heading: 'Comprendre les cycles du sommeil',
@@ -152,7 +152,7 @@ const content: Record<Language, {
     ],
   },
   zh: {
-    title: '工作原理',
+    title: '这个睡眠计算器的工作原理',
     sections: [
       {
         heading: '了解睡眠周期',
@@ -194,7 +194,7 @@ export const HowItWorks: React.FC = () => {
   const pageContent = content[language];
 
   return (
-    <div className="relative min-h-screen w-full bg-[#030617] text-white font-sans">
+    <div className="relative w-full bg-[#030617] text-white font-sans">
       <main className="relative z-10 pt-20 pb-20 px-6 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-8" style={{ fontWeight: '200' }}>
           {pageContent.title}
