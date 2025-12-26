@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Language, languageNames } from '../i18n/translations';
 import { useLanguage } from '../hooks/useLanguage';
 import { cn } from '@/lib/utils';
+import { track } from '../lib/analytics/mixpanel';
 
 export const LanguageSelector: React.FC = () => {
   const [language, setLanguage] = useLanguage();
@@ -26,8 +27,15 @@ export const LanguageSelector: React.FC = () => {
   }, []);
 
   const handleLanguageChange = (newLang: Language) => {
+    const oldLang = language;
     setLanguage(newLang);
     setIsOpen(false);
+    
+    // Track language change
+    track('Language Changed', {
+      from: oldLang,
+      to: newLang,
+    });
     
     // Navigate to same page in new language using React Router
     const currentPath = location.pathname;

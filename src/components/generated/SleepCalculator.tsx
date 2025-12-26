@@ -7,6 +7,7 @@ import { ChevronUp, ChevronDown, Clock, Menu, X, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "../../hooks/useLanguage";
 import { calculatorTranslations } from "../../i18n/calculator";
+import { track, bucketTime } from "../../lib/analytics/mixpanel";
 
 // Helper functions
 const formatTime = (hours: number, minutes: number) => {
@@ -249,6 +250,21 @@ export default function SleepCalculator() {
     return times;
   }, [bedtimeHours, bedtimeMinutes, cycleLength, fallAsleepTime, numSuggestions, activeTab]);
   const recommendedIndex = 2; // 5 cycles is typically recommended
+
+  // Track when sleep times are calculated
+  useEffect(() => {
+    if (sleepTimes.length > 0) {
+      const inputTimeBucket = bucketTime(bedtimeHours, bedtimeMinutes);
+      track('Sleep Times Calculated', {
+        calculation_type: activeTab === 'sleep' ? 'bedtime_to_wake' : 'wake_to_bedtime',
+        input_time_bucket: inputTimeBucket,
+        cycle_length: cycleLength,
+        fall_asleep_time: fallAsleepTime,
+        num_suggestions: numSuggestions,
+        cycles_range: `${sleepTimes[0].cycles}-${sleepTimes[sleepTimes.length - 1].cycles}`,
+      });
+    }
+  }, [sleepTimes, activeTab, bedtimeHours, bedtimeMinutes, cycleLength, fallAsleepTime, numSuggestions]);
 
   const incrementTime = (amount: number) => {
     const newTime = addMinutes(bedtimeHours, bedtimeMinutes, amount);
@@ -598,7 +614,25 @@ export default function SleepCalculator() {
               x: 0
             }} transition={{
               delay: 0.9 + index * 0.05
-            }} className={cn("p-3 rounded-xl border transition-all", index === recommendedIndex ? "border-blue-500 bg-white/5 shadow-[0_0_30px_rgba(59,130,246,0.2)]" : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10")}>
+            }} className={cn("p-3 rounded-xl border transition-all cursor-pointer", index === recommendedIndex ? "border-blue-500 bg-white/5 shadow-[0_0_30px_rgba(59,130,246,0.2)]" : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10")}
+            onClick={() => {
+              const timeBucket = bucketTime(time.hours, time.minutes);
+              if (activeTab === 'sleep') {
+                track('Wake Time Selected', {
+                  time_bucket: timeBucket,
+                  cycles: time.cycles,
+                  total_minutes: time.totalMinutes,
+                  is_recommended: index === recommendedIndex,
+                });
+              } else {
+                track('Bedtime Selected', {
+                  time_bucket: timeBucket,
+                  cycles: time.cycles,
+                  total_minutes: time.totalMinutes,
+                  is_recommended: index === recommendedIndex,
+                });
+              }
+            }}>
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-0.5">

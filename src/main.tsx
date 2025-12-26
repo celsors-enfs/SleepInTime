@@ -40,6 +40,11 @@ mediaQuery.addEventListener('change', forceLightMode);
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
+import { initMixpanel } from './lib/analytics/mixpanel';
+
+// Initialize Mixpanel before React renders
+initMixpanel();
+
 createRoot(document.getElementById('root')!).render(<StrictMode>
     <App />
   </StrictMode>);

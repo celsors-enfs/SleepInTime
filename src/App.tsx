@@ -8,6 +8,7 @@ import { SleepHygiene } from './pages/SleepHygiene';
 import { About } from './pages/About';
 import { SEOHead } from './components/SEOHead';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { PageTracker } from './components/PageTracker';
 import { Language } from './i18n/translations';
 
 // Language route wrapper
@@ -37,6 +38,7 @@ function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
+        <PageTracker />
         <Layout>
           <Routes>
           {/* Root redirect to English */}
