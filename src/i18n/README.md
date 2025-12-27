@@ -21,3 +21,4 @@ French (fr) and Spanish (es) translations must remain **structurally identical**
 - Keep tone: clear, friendly, informative
 
 
+

@@ -139,3 +139,4 @@ Após o push e deploy:
    - Envie o sitemap: https://sleepintime.com/sitemap.xml
    - Deve ser aceito sem erros
 
+

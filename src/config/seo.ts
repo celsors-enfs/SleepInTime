@@ -134,3 +134,4 @@ export const seoConfig: Record<Language, {
   },
 };
 
+
