@@ -292,7 +292,7 @@ export const FAQ: React.FC = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <main className="relative z-10 pt-20 pb-20 px-6 max-w-4xl mx-auto">
+      <main className="relative z-10 pt-20 pb-8 md:pb-20 px-4 md:px-6 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontWeight: '200' }}>
           {pageContent.title}
         </h1>

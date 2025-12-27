@@ -39,27 +39,27 @@ export const Navigation: React.FC = () => {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 md:px-6 py-3 md:py-4',
         isScrolled
-          ? 'bg-[#030617]/80 backdrop-blur-md border-b border-white/5 py-3'
+          ? 'bg-[#030617]/80 backdrop-blur-md border-b border-white/5'
           : 'bg-transparent'
       )}
       style={{ pointerEvents: 'auto' }}
     >
       <div className="flex items-center max-w-7xl mx-auto relative h-full">
         {/* Logo - Left */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 min-w-0 pr-1 md:pr-4" style={{ maxWidth: 'calc(100% - 140px)' }}>
           <Link
             to={langPrefix}
-            className="flex items-center gap-2 group cursor-pointer"
+            className="flex items-center gap-1 md:gap-2 group cursor-pointer"
           >
-            <div className="relative w-8 h-8 flex items-center justify-center">
+            <div className="relative flex items-center justify-center w-full">
               <img
-                className="w-6 h-6 text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]"
+                className="h-6 md:h-[34px] text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]"
                 style={{
-                  width: 'fit-content',
-                  maxWidth: 'fit-content',
-                  height: '36px',
+                  width: 'auto',
+                  maxWidth: '100%',
+                  objectFit: 'contain',
                 }}
                 src="https://storage.googleapis.com/storage.magicpath.ai/user/347385894321393664/assets/530f46d9-08bd-4224-8001-71b163469a7b.png"
                 alt="SleepInTime"
@@ -88,10 +88,10 @@ export const Navigation: React.FC = () => {
         </div>
 
         {/* Right Section: Language Selector + Mobile Menu */}
-        <div className="flex items-center gap-4 flex-shrink-0 ml-auto" style={{ pointerEvents: 'auto', zIndex: 10 }}>
+        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0 ml-auto" style={{ pointerEvents: 'auto', zIndex: 10 }}>
           <LanguageSelector />
           <button
-            className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
+            className="md:hidden p-2 text-white/80 hover:text-white transition-colors flex-shrink-0"
             onClick={(e) => {
               e.stopPropagation();
               setIsMobileMenuOpen(!isMobileMenuOpen);

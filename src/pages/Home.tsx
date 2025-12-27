@@ -217,7 +217,7 @@ export const Home: React.FC = () => {
       </div>
 
       {/* Editorial Content Section */}
-      <section className="relative z-10 py-20 px-6">
+      <section className="relative z-10 py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           {content.sections.map((section, index) => (
             <motion.div
@@ -226,7 +226,7 @@ export const Home: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="mb-16"
+              className="mb-8 md:mb-16"
             >
               {index === 0 ? (
                 <h1
@@ -279,7 +279,7 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-12 p-4 bg-white/5 border border-white/10 rounded-xl"
+            className="mt-8 md:mt-12 p-4 bg-white/5 border border-white/10 rounded-xl mb-4 md:mb-0"
           >
             <p className="text-sm text-white/60 italic">{content.disclaimer}</p>
           </motion.div>

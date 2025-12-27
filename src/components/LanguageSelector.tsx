@@ -63,11 +63,12 @@ export const LanguageSelector: React.FC = () => {
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
-        className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all"
+        className="flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1.5 text-xs md:text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all"
         style={{ pointerEvents: 'auto' }}
       >
-        <span>{languageNames[language]}</span>
-        <ChevronDown className={cn("w-3.5 h-3.5 transition-transform", isOpen && "rotate-180")} />
+        <span className="hidden sm:inline">{languageNames[language]}</span>
+        <span className="sm:hidden">{languageNames[language].split(' ')[0]}</span>
+        <ChevronDown className={cn("w-3 h-3 md:w-3.5 md:h-3.5 transition-transform flex-shrink-0", isOpen && "rotate-180")} />
       </button>
       
       {isOpen && (

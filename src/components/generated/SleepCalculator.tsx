@@ -614,7 +614,7 @@ export default function SleepCalculator() {
               x: 0
             }} transition={{
               delay: 0.9 + index * 0.05
-            }} className={cn("p-3 rounded-xl border transition-all cursor-pointer", index === recommendedIndex ? "border-blue-500 bg-white/5 shadow-[0_0_30px_rgba(59,130,246,0.2)]" : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10")}
+            }} className={cn("p-2 md:p-3 rounded-xl border transition-all cursor-pointer relative overflow-hidden", index === recommendedIndex ? "border-blue-500 bg-white/5 shadow-[0_0_30px_rgba(59,130,246,0.2)]" : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10")}
             onClick={() => {
               const timeBucket = bucketTime(time.hours, time.minutes);
               if (activeTab === 'sleep') {
@@ -633,25 +633,34 @@ export default function SleepCalculator() {
                 });
               }
             }}>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <h3 className="text-2xl font-bold" style={{
-                      fontFamily: "inherit",
-                      fontWeight: "500"
-                    }}>
-                          {formatTime(time.hours, time.minutes)}
-                        </h3>
-                        {index === recommendedIndex && <span className="px-2 py-0.5 text-[10px] font-bold bg-blue-500 text-white rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                            {t.recommended}
-                          </span>}
-                      </div>
-                      <p className="text-xs text-white/60 mb-0.5 font-medium">
+                  <div className="flex flex-col h-full">
+                    <div className="flex-1 min-w-0">
+                      {/* Time */}
+                      <h3 className="text-lg md:text-2xl font-bold mb-0.5 md:mb-1 leading-tight" style={{
+                        fontFamily: "inherit",
+                        fontWeight: "500"
+                      }}>
+                        {formatTime(time.hours, time.minutes)}
+                      </h3>
+                      
+                      {/* Day */}
+                      <p className="text-[10px] md:text-xs text-white/60 mb-0.5 md:mb-1 font-medium leading-tight">
                         {getRelativeDay(currentHours, currentMinutes, time.hours, time.minutes, bedtimeHours, t, activeTab === 'wake')}
                       </p>
-                      <p className="text-[10px] text-white/40">
+                      
+                      {/* Cycles and duration */}
+                      <p className="text-[9px] md:text-[10px] text-white/40 mb-1 md:mb-1.5 leading-tight break-words">
                         {time.cycles} {t.cycles} • {formatDuration(time.totalMinutes)}
                       </p>
+                      
+                      {/* Recommended badge - below cycles info */}
+                      {index === recommendedIndex && (
+                        <div className="mt-auto pt-1">
+                          <span className="inline-block px-1.5 py-0.5 md:px-2 md:py-0.5 text-[8px] md:text-[10px] font-bold bg-blue-500 text-white rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)] whitespace-nowrap">
+                            {t.recommended}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>)}

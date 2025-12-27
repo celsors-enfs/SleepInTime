@@ -8,17 +8,17 @@ export const AriseFooter: React.FC<AriseFooterProps> = ({
   className
 }) => {
   return <footer className={cn("relative w-full bg-[#030B1F] text-white border-t border-white/5", className)}>
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
         {/* Main Footer Content */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
           {/* Brand Section */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 md:gap-8">
             {/* Logo */}
             <SleepInTimeLogo width={160} height={40} className="cursor-pointer" />
           </div>
 
           {/* Right Section: Copyright */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 md:gap-6">
             {/* Copyright */}
             <p className="text-xs text-white/60">© 2025 SleepInTime</p>
           </div>
