@@ -9,6 +9,7 @@ import { About } from './pages/About';
 import { SEOHead } from './components/SEOHead';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { PageTracker } from './components/PageTracker';
+import { ScrollToTop } from './components/ScrollToTop';
 import { Language } from './i18n/translations';
 
 // Language route wrapper
@@ -38,6 +39,7 @@ function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
+        <ScrollToTop />
         <PageTracker />
         <Layout>
           <Routes>

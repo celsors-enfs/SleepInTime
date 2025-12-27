@@ -54,6 +54,10 @@ export const LanguageSelector: React.FC = () => {
     
     // Navigate using React Router
     navigate(newPath);
+    // Scroll to top after navigation
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, 0);
   };
 
   return (

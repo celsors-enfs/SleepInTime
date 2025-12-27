@@ -52,6 +52,7 @@ export const Navigation: React.FC = () => {
           <Link
             to={langPrefix}
             className="flex items-center gap-1 md:gap-2 group cursor-pointer"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
           >
             <div className="relative flex items-center justify-center w-full">
               <img
@@ -81,6 +82,7 @@ export const Navigation: React.FC = () => {
                   : 'text-white/70 hover:text-white hover:bg-white/10'
               )}
               style={{ pointerEvents: 'auto', zIndex: 10 }}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
             >
               {item.name}
             </Link>
@@ -124,7 +126,10 @@ export const Navigation: React.FC = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                  }}
                   className={cn(
                     'text-2xl font-semibold transition-colors',
                     isActive(item.path)
