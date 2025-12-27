@@ -1,11 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/sitemap.xml",
-      "destination": "/api/sitemap"
-    },
-    {
-      "source": "/((?!api|sitemap\\.xml|robots\\.txt|favicon\\.png|.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|webp|avif|map)).*)",
+      "source": "/((?!api|sitemap\\.xml|robots\\.txt|favicon\\.png|.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|webp|avif|map|xml|txt)).*)",
       "destination": "/index.html"
     }
   ],
