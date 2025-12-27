@@ -11,6 +11,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { PageTracker } from './components/PageTracker';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Language } from './i18n/translations';
+import { seoConfig } from './config/seo';
 
 // Language route wrapper
 const LanguageRoute: React.FC<{
@@ -49,6 +50,7 @@ function App() {
           {/* Language-specific routes */}
           {languages.map((lang) => {
             const langPrefix = lang === 'en' ? '/en' : `/${lang}`;
+            const seo = seoConfig[lang];
             
             return (
               <React.Fragment key={lang}>
@@ -58,8 +60,8 @@ function App() {
                   element={
                     <LanguageRoute
                       lang={lang}
-                      title="Sleep Calculator: Find the Best Bedtime and Wake Up Time | SleepInTime"
-                      description="Free sleep calculator to find the best bedtime and wake up time based on 90-minute sleep cycles. Calculate optimal sleep times for better mornings. No account required."
+                      title={seo.home.title}
+                      description={seo.home.description}
                       path={langPrefix}
                     >
                       <Home />
@@ -73,8 +75,8 @@ function App() {
                   element={
                     <LanguageRoute
                       lang={lang}
-                      title="How This Sleep Calculator Works | SleepInTime"
-                      description="Learn how our sleep cycle calculator works. Understand 90-minute sleep cycles, sleep onset time, and how we calculate optimal bedtime and wake up times."
+                      title={seo.howItWorks.title}
+                      description={seo.howItWorks.description}
                       path={`${langPrefix}/how-it-works`}
                     >
                       <HowItWorks />
@@ -88,8 +90,8 @@ function App() {
                   element={
                     <LanguageRoute
                       lang={lang}
-                      title="Sleep Calculator FAQ: Common Questions About Sleep Cycles | SleepInTime"
-                      description="Frequently asked questions about sleep cycles, sleep timing, bedtime calculation, and how to use our free sleep calculator. Get answers about 90-minute cycles and optimal sleep times."
+                      title={seo.faq.title}
+                      description={seo.faq.description}
                       path={`${langPrefix}/faq`}
                     >
                       <FAQ />
@@ -103,8 +105,8 @@ function App() {
                   element={
                     <LanguageRoute
                       lang={lang}
-                      title="Sleep Hygiene Tips for a Better Sleep Schedule | SleepInTime"
-                      description="Learn sleep hygiene practices including light exposure, caffeine timing, and creating the right sleep environment. Improve your sleep schedule with evidence-based tips."
+                      title={seo.sleepHygiene.title}
+                      description={seo.sleepHygiene.description}
                       path={`${langPrefix}/sleep-hygiene`}
                     >
                       <SleepHygiene />
@@ -118,8 +120,8 @@ function App() {
                   element={
                     <LanguageRoute
                       lang={lang}
-                      title="About SleepInTime: Free Sleep Calculator Tool"
-                      description="Learn about SleepInTime, a privacy-first, free sleep calculator that helps you align your sleep times with natural 90-minute sleep cycles. No tracking, no accounts required."
+                      title={seo.about.title}
+                      description={seo.about.description}
                       path={`${langPrefix}/about`}
                     >
                       <About />
