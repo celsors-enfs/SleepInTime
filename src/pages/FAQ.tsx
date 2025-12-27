@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Language } from '../i18n/translations';
 import { cn } from '@/lib/utils';
-import { AdSlot } from '../components/AdSlot';
+import { AdsenseAd } from '../components/AdsenseAd';
 
 interface FAQItem {
   question: string;
@@ -325,7 +325,10 @@ export const FAQ: React.FC = () => {
           ))}
         </div>
 
-        <AdSlot id="faq-ad-1" />
+        {/* AdSense Ad - After content, below the fold */}
+        <div className="mt-12 md:mt-16">
+          <AdsenseAd slot="faq-ad-1" />
+        </div>
       </main>
     </div>
   );

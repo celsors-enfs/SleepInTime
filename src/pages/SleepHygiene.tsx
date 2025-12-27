@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Language } from '../i18n/translations';
-import { AdSlot } from '../components/AdSlot';
+import { AdsenseAd } from '../components/AdsenseAd';
 
 const content: Record<Language, {
   title: string;
@@ -271,7 +271,10 @@ export const SleepHygiene: React.FC = () => {
           </section>
         ))}
 
-        <AdSlot id="sleep-hygiene-ad-1" />
+        {/* AdSense Ad - After content, below the fold */}
+        <div className="mt-12 md:mt-16">
+          <AdsenseAd slot="sleep-hygiene-ad-1" />
+        </div>
       </main>
     </div>
   );

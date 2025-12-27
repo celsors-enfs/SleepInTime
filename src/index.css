@@ -168,3 +168,39 @@ img.broken-image-fallback {
     opacity: 1;
   }
 }
+
+/* Google AdSense Safe Styles */
+/* Ensures ads don't look like buttons and have proper spacing */
+.adsense-ad-container {
+  margin: 40px 0;
+  padding: 0;
+  min-height: 250px;
+  display: block;
+  text-align: center;
+}
+
+.adsense-ad-container ins.adsbygoogle {
+  display: block !important;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Prevent ads from looking like buttons */
+.adsense-ad-container a,
+.adsense-ad-container button {
+  pointer-events: auto;
+}
+
+/* Ensure proper spacing on mobile */
+@media (max-width: 768px) {
+  .adsense-ad-container {
+    margin: 24px 0;
+    min-height: 200px;
+  }
+}
+
+/* Placeholder styles for development */
+.adsense-ad-placeholder {
+  user-select: none;
+  pointer-events: none;
+}

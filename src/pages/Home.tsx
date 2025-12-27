@@ -4,7 +4,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { Language } from '../i18n/translations';
 import { homepageContent } from '../content/homepage';
 import SleepCalculator from '../components/generated/SleepCalculator';
-import { AdSlot } from '../components/AdSlot';
+import { AdsenseAd } from '../components/AdsenseAd';
 
 export const Home: React.FC = () => {
   const [language] = useLanguage();
@@ -284,8 +284,10 @@ export const Home: React.FC = () => {
             <p className="text-sm text-white/60 italic">{content.disclaimer}</p>
           </motion.div>
 
-          {/* Ad Slot - Only after editorial content */}
-          <AdSlot id="homepage-ad-1" />
+          {/* AdSense Ad - Only after editorial content, below the fold */}
+          <div className="mt-12 md:mt-16">
+            <AdsenseAd slot="homepage-ad-1" />
+          </div>
         </div>
       </section>
     </div>
