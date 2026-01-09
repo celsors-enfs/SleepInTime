@@ -220,19 +220,41 @@ export default function SleepCalculator() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Load Native Banner script
+  // Load Native Banner script when component mounts
   useEffect(() => {
     const scriptId = 'native-banner-script';
     if (document.getElementById(scriptId)) {
       return; // Script already loaded
     }
 
-    const script = document.createElement('script');
-    script.id = scriptId;
-    script.async = true;
-    script.setAttribute('data-cfasync', 'false');
-    script.src = 'https://pl28438063.effectivegatecpm.com/c8f5d2ec08a224324073a992fce13830/invoke.js';
-    document.head.appendChild(script);
+    // Wait for container to be in DOM
+    const loadScript = () => {
+      const container = document.getElementById('container-c8f5d2ec08a224324073a992fce13830');
+      if (!container) {
+        // Retry after container is rendered
+        setTimeout(loadScript, 100);
+        return;
+      }
+
+      if (document.getElementById(scriptId)) {
+        return; // Already loaded
+      }
+
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.async = true;
+      script.setAttribute('data-cfasync', 'false');
+      script.src = 'https://pl28438063.effectivegatecpm.com/c8f5d2ec08a224324073a992fce13830/invoke.js';
+      
+      script.onerror = () => {
+        console.warn('Native Banner script failed to load');
+      };
+      
+      document.head.appendChild(script);
+    };
+
+    // Start loading after a short delay to ensure DOM is ready
+    setTimeout(loadScript, 300);
   }, []);
 
   // Calculate sleep times

@@ -42,30 +42,36 @@ export const Banner320x50: React.FC<Banner320x50Props> = ({
       return;
     }
 
-    // Create and configure atOptions
+    // Create and configure atOptions BEFORE loading script
     if (typeof window !== 'undefined') {
-      // Set atOptions before loading script
-      (window as any).atOptions = (window as any).atOptions || {};
-      if (!(window as any).atOptions['38caeb7d29d0ff34dd19cf4c31cb9590']) {
-        (window as any).atOptions['38caeb7d29d0ff34dd19cf4c31cb9590'] = {
-          'key': '38caeb7d29d0ff34dd19cf4c31cb9590',
-          'format': 'iframe',
-          'height': 50,
-          'width': 320,
-          'params': {}
-        };
-      }
+      // Set atOptions as a simple object (Adsterra format)
+      // This must be set BEFORE the script loads
+      (window as any).atOptions = {
+        'key': '38caeb7d29d0ff34dd19cf4c31cb9590',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
+      };
 
-      // Load the Adsterra script
-      const script = document.createElement('script');
-      script.setAttribute('data-banner-320x50', 'true');
-      script.type = 'text/javascript';
-      script.src = 'https://www.profitablecreativeformat.com/38caeb7d29d0ff34dd19cf4c31cb9590/invoke.js';
-      script.async = true;
-      
-      // Append to head
-      document.head.appendChild(script);
-      scriptLoadedRef.current = true;
+      // Wait a bit to ensure container is in DOM, then load script
+      setTimeout(() => {
+        if (scriptLoadedRef.current) return;
+        
+        const script = document.createElement('script');
+        script.setAttribute('data-banner-320x50', 'true');
+        script.type = 'text/javascript';
+        script.src = 'https://www.profitablecreativeformat.com/38caeb7d29d0ff34dd19cf4c31cb9590/invoke.js';
+        script.async = false; // Load synchronously to ensure atOptions is set
+        
+        script.onerror = () => {
+          console.warn('Banner 320x50 script failed to load');
+        };
+        
+        // Append to head
+        document.head.appendChild(script);
+        scriptLoadedRef.current = true;
+      }, 200);
     }
 
     return () => {

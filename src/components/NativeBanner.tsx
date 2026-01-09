@@ -33,14 +33,40 @@ export const NativeBanner: React.FC<NativeBannerProps> = ({
       return; // Script already loaded
     }
 
-    const script = document.createElement('script');
-    script.id = scriptId;
-    script.async = true;
-    script.setAttribute('data-cfasync', 'false');
-    script.src = 'https://pl28438063.effectivegatecpm.com/c8f5d2ec08a224324073a992fce13830/invoke.js';
-    
-    // Append to head or body
-    document.head.appendChild(script);
+    // Ensure container exists in DOM before loading script
+    const container = document.getElementById('container-c8f5d2ec08a224324073a992fce13830');
+    if (!container) {
+      // Retry after a short delay if container not ready
+      setTimeout(() => {
+        const retryContainer = document.getElementById('container-c8f5d2ec08a224324073a992fce13830');
+        if (retryContainer && !document.getElementById(scriptId)) {
+          loadNativeBannerScript();
+        }
+      }, 200);
+      return;
+    }
+
+    loadNativeBannerScript();
+
+    function loadNativeBannerScript() {
+      if (document.getElementById(scriptId)) {
+        return; // Already loaded
+      }
+
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.async = true;
+      script.setAttribute('data-cfasync', 'false');
+      script.src = 'https://pl28438063.effectivegatecpm.com/c8f5d2ec08a224324073a992fce13830/invoke.js';
+      
+      // Handle script load errors
+      script.onerror = () => {
+        console.warn('Native Banner script failed to load');
+      };
+      
+      // Append to head
+      document.head.appendChild(script);
+    }
 
     return () => {
       // Cleanup: remove script on unmount if needed
