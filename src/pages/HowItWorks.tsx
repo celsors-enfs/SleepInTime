@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Language } from '../i18n/translations';
-import { AdsenseAd } from '../components/AdsenseAd';
 import { NativeBanner } from '../components/NativeBanner';
 import { Banner320x50 } from '../components/Banner320x50';
 
@@ -229,14 +228,9 @@ export const HowItWorks: React.FC = () => {
           </section>
         ))}
 
-        {/* Banner 320x50 - Before AdSense */}
+        {/* Banner 320x50 - After content */}
         <div className="my-8 md:my-12">
           <Banner320x50 />
-        </div>
-
-        {/* AdSense Ad - After content, below the fold */}
-        <div className="mt-12 md:mt-16">
-          <AdsenseAd slot="how-it-works-ad-1" />
         </div>
       </main>
     </div>

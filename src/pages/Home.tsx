@@ -4,7 +4,6 @@ import { useLanguage } from '../hooks/useLanguage';
 import { Language } from '../i18n/translations';
 import { homepageContent } from '../content/homepage';
 import SleepCalculator from '../components/generated/SleepCalculator';
-import { AdsenseAd } from '../components/AdsenseAd';
 import { NativeBanner } from '../components/NativeBanner';
 import { Banner320x50 } from '../components/Banner320x50';
 
@@ -296,14 +295,9 @@ export const Home: React.FC = () => {
             <p className="text-sm text-white/60 italic">{content.disclaimer}</p>
           </motion.div>
 
-          {/* Banner 320x50 - Before AdSense */}
+          {/* Banner 320x50 - After editorial content */}
           <div className="my-8 md:my-12">
             <Banner320x50 />
-          </div>
-
-          {/* AdSense Ad - Only after editorial content, below the fold */}
-          <div className="mt-12 md:mt-16">
-            <AdsenseAd slot="homepage-ad-1" />
           </div>
         </div>
       </section>
