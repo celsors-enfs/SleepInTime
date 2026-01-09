@@ -220,6 +220,21 @@ export default function SleepCalculator() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Load Native Banner script
+  useEffect(() => {
+    const scriptId = 'native-banner-script';
+    if (document.getElementById(scriptId)) {
+      return; // Script already loaded
+    }
+
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.async = true;
+    script.setAttribute('data-cfasync', 'false');
+    script.src = 'https://pl28438063.effectivegatecpm.com/c8f5d2ec08a224324073a992fce13830/invoke.js';
+    document.head.appendChild(script);
+  }, []);
+
   // Calculate sleep times
   const sleepTimes = useMemo(() => {
     const times: SleepTime[] = [];
@@ -588,6 +603,24 @@ export default function SleepCalculator() {
                   </div>
                 </div>
               </div>}
+          </motion.div>
+
+          {/* Native Banner Ad - Between Settings and Recommended Times */}
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.8,
+          delay: 0.75
+        }} className="mb-8">
+            <div id="container-c8f5d2ec08a224324073a992fce13830" style={{
+              margin: '24px 0',
+              minHeight: '100px',
+              display: 'block',
+            }} />
           </motion.div>
 
           {/* Recommended Times */}

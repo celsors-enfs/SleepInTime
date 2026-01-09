@@ -170,3 +170,4 @@ Se tiver problemas:
 3. Verifique se os Ad Slot IDs estão corretos
 4. Aguarde alguns minutos após o deploy (AdSense pode levar tempo para carregar)
 
+

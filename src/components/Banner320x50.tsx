@@ -44,13 +44,17 @@ export const Banner320x50: React.FC<Banner320x50Props> = ({
 
     // Create and configure atOptions
     if (typeof window !== 'undefined') {
-      (window as any).atOptions = {
-        'key': '38caeb7d29d0ff34dd19cf4c31cb9590',
-        'format': 'iframe',
-        'height': 50,
-        'width': 320,
-        'params': {}
-      };
+      // Set atOptions before loading script
+      (window as any).atOptions = (window as any).atOptions || {};
+      if (!(window as any).atOptions['38caeb7d29d0ff34dd19cf4c31cb9590']) {
+        (window as any).atOptions['38caeb7d29d0ff34dd19cf4c31cb9590'] = {
+          'key': '38caeb7d29d0ff34dd19cf4c31cb9590',
+          'format': 'iframe',
+          'height': 50,
+          'width': 320,
+          'params': {}
+        };
+      }
 
       // Load the Adsterra script
       const script = document.createElement('script');
@@ -84,7 +88,7 @@ export const Banner320x50: React.FC<Banner320x50Props> = ({
         ...style,
       }}
     >
-      <div id={`at-${(window as any).atOptions?.key || '38caeb7d29d0ff34dd19cf4c31cb9590'}`} style={{ display: 'block', width: '320px', height: '50px' }} />
+      <div id="at-38caeb7d29d0ff34dd19cf4c31cb9590" style={{ display: 'block', width: '320px', height: '50px' }} />
     </div>
   );
 };
