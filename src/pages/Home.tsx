@@ -6,6 +6,7 @@ import { homepageContent } from '../content/homepage';
 import SleepCalculator from '../components/generated/SleepCalculator';
 import { AdsenseAd } from '../components/AdsenseAd';
 import { NativeBanner } from '../components/NativeBanner';
+import { Banner320x50 } from '../components/Banner320x50';
 
 export const Home: React.FC = () => {
   const [language] = useLanguage();
@@ -217,6 +218,11 @@ export const Home: React.FC = () => {
         <SleepCalculator />
       </div>
 
+      {/* Banner 320x50 - After calculator */}
+      <div className="py-6 md:py-8 px-4 md:px-6">
+        <Banner320x50 />
+      </div>
+
       {/* Editorial Content Section */}
       <section className="relative z-10 py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
@@ -289,6 +295,11 @@ export const Home: React.FC = () => {
           >
             <p className="text-sm text-white/60 italic">{content.disclaimer}</p>
           </motion.div>
+
+          {/* Banner 320x50 - Before AdSense */}
+          <div className="my-8 md:my-12">
+            <Banner320x50 />
+          </div>
 
           {/* AdSense Ad - Only after editorial content, below the fold */}
           <div className="mt-12 md:mt-16">

@@ -95,30 +95,8 @@ export const AdsenseAd: React.FC<AdsenseAdProps> = ({
     pushAd();
   }, []);
 
-  // Don't render in development if AdSense is not configured
-  // This prevents layout shifts and errors during development
-  if (process.env.NODE_ENV === 'development' && !process.env.VITE_ADSENSE_CLIENT) {
-    return (
-      <div
-        className={`adsense-ad-placeholder ${className}`}
-        style={{
-          minHeight: '250px',
-          margin: '40px 0',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          border: '1px dashed rgba(255, 255, 255, 0.2)',
-          borderRadius: '8px',
-          ...style,
-        }}
-      >
-        <span style={{ color: 'rgba(255, 255, 255, 0.3)', fontSize: '14px' }}>
-          AdSense Ad (slot: {slot})
-        </span>
-      </div>
-    );
-  }
+  // Always render the ad container - AdSense will handle the actual ad display
+  // This ensures ads appear in production even if VITE_ADSENSE_CLIENT is not set in dev
 
   return (
     <div
@@ -152,4 +130,5 @@ declare global {
     adsbygoogle?: Array<Record<string, unknown>>;
   }
 }
+
 

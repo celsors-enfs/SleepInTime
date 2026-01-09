@@ -2,6 +2,7 @@ import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Language } from '../i18n/translations';
 import { AdsenseAd } from '../components/AdsenseAd';
+import { Banner320x50 } from '../components/Banner320x50';
 
 const content: Record<Language, {
   title: string;
@@ -255,6 +256,11 @@ export const SleepHygiene: React.FC = () => {
           {pageContent.title}
         </h1>
 
+        {/* Banner 320x50 - After title */}
+        <div className="mb-8 md:mb-12">
+          <Banner320x50 />
+        </div>
+
         {pageContent.sections.map((section, index) => (
           <section key={index} className="mb-12">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4" style={{ fontWeight: '300' }}>
@@ -270,6 +276,11 @@ export const SleepHygiene: React.FC = () => {
             ))}
           </section>
         ))}
+
+        {/* Banner 320x50 - Before AdSense */}
+        <div className="my-8 md:my-12">
+          <Banner320x50 />
+        </div>
 
         {/* AdSense Ad - After content, below the fold */}
         <div className="mt-12 md:mt-16">
