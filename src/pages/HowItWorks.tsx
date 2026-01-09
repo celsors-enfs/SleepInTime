@@ -2,6 +2,7 @@ import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Language } from '../i18n/translations';
 import { AdsenseAd } from '../components/AdsenseAd';
+import { NativeBanner } from '../components/NativeBanner';
 
 const content: Record<Language, {
   title: string;
@@ -213,6 +214,12 @@ export const HowItWorks: React.FC = () => {
                 {paragraph}
               </p>
             ))}
+            {/* Native Banner after first section */}
+            {index === 0 && (
+              <div className="my-8 md:my-12">
+                <NativeBanner />
+              </div>
+            )}
           </section>
         ))}
 

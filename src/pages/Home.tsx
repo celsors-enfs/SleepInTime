@@ -5,6 +5,7 @@ import { Language } from '../i18n/translations';
 import { homepageContent } from '../content/homepage';
 import SleepCalculator from '../components/generated/SleepCalculator';
 import { AdsenseAd } from '../components/AdsenseAd';
+import { NativeBanner } from '../components/NativeBanner';
 
 export const Home: React.FC = () => {
   const [language] = useLanguage();
@@ -253,6 +254,11 @@ export const Home: React.FC = () => {
               ))}
             </motion.div>
           ))}
+
+          {/* Native Banner - After first content section */}
+          <div className="my-8 md:my-12">
+            <NativeBanner />
+          </div>
 
           {/* Key Features List */}
           <motion.div
